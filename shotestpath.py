@@ -186,5 +186,5 @@ def home():
 # JUST A LOOP THROUGH MAIN FUNCTION FOR CLEAR
 def main():
     home()
-#hello
+
 main()
