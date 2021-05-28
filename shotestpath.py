@@ -12,7 +12,8 @@ lo2 = []
 # THE MAIN TKINTER GUI 
 def home():
     top = Tk()
-    top.geometry("600x400")
+    top.geometry("600x400+380+160")
+    top.resizable(False,False)
     top.title("Shortest path")
     top.configure(background="olive")
     top.counter = 0 # VERTEX COUNTER
@@ -20,6 +21,7 @@ def home():
 
     # CLEAR AND RESET
     def clr():
+        plt.close('all')
         top.destroy()
         main()
     
@@ -31,6 +33,7 @@ def home():
 
     # VISUALIZING THE GRAPH
     def grapho():
+        plt.clf()
         pos = nx.spring_layout(G)
         path = len(pro)
         edge =[]
@@ -50,7 +53,7 @@ def home():
         nx.draw_networkx_nodes(G,pos,nodelist=pro,node_color='red')
         nx.draw_networkx_edge_labels(G,pos,edge_labels=label ,font_color='Blue')
         plt.show()
-    
+        
     # PATH CALCULATION
     def result(e):
         ee5 = e5.get()
@@ -61,12 +64,14 @@ def home():
             error()
         else:
             global G
-            G = nx.Graph()
+            G = nx.DiGraph()
             G.add_weighted_edges_from(e)
             global pro
             pro = nx.dijkstra_path(G,ee5,ee6)
-            t111 = Label(top, text="THE RESULTANT SHORTEST PATH IS: "+str(pro).replace(',','->'), font=("Helvetica", 15, "bold"), fg="black", bg="Olive")
+            t111 = Label(top, text="THE RESULTANT SHORTEST PATH IS:", font=("Helvetica", 15, "bold"), fg="black", bg="Olive")
             t111.place(x=10, y=320)
+            t111 = Label(top, text= str(pro).replace(',','->'), font=("Helvetica", 15, "bold"), fg="black", bg="Olive")
+            t111.place(x=10, y=350)
 
             btn4  = Button(top,text="VISUALIZE",width=10,bg="turquoise",bd=5, command=grapho)
             btn4.place(x=400,y=360)
