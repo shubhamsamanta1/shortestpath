@@ -3,6 +3,7 @@
 from tkinter import *
 import networkx as nx
 import matplotlib.pyplot as plt
+import os
 
 # INITIAL LIST FOR EDGE VERTEX DATA
 e =[]
@@ -23,6 +24,8 @@ def home():
     def clr():
         plt.close('all')
         top.destroy()
+        os.startfile("shotestpath.py")
+        os.close("shotestpath.py")
         main()
     
     # ERROR MODULE
